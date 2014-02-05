@@ -1,0 +1,87 @@
+{% from "util.html" import link_tag, script_tag %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{% block title %}{% endblock %} | BLANKONS - Free Soft and Mobile Apps Search Engine</title>
+    {% block metadesc %}
+    {% endblock %}
+    <meta name="google-site-verification" content="pb6OLr_nSgcK7tfBXOc49aBDXi8KHY6i9q8Xwvkhnm0" />
+    {{ link_tag('bootstrap') }}
+    {{ link_tag('bootstrap-responsive') }}
+    {{ link_tag('style') }}
+    {% block css %}
+    {% endblock %}
+    {{ script_tag('jquery-1.9.1') }}
+    {{ script_tag('bootstrap') }}
+    {{ script_tag('bootstrap.min') }}
+    {% block js %}
+    {% endblock %}
+
+    <link href="{{ url_for('recent_feed') }}" rel="alternate" title="Recent Changes" type="application/atom+xml">
+  </head>
+  <body>
+    <div class="container">
+      <div class="container-narrow">
+	<div class="masthead">
+	  <ul class="nav nav-pills pull-right">
+	    <li class="active">
+	      <a href="/">Home</a>
+	    </li>
+	    <li>
+	      <a href="/about">About</a>
+	    </li>
+	    <li>
+	      <a href="#">Contact</a>
+	    </li>
+	  </ul>
+	  <h3 class="muted">Freeware Search Engine</h3>
+	</div>
+      </div>
+      <hr>
+      <div class="container-narrow">
+	<div class="jumbotron">
+	  <h1>BLANKONS</h1>
+	  <p class="lead">
+	    The quick and right way to search apps in seconds!
+	  </p>
+	  <div class="input-append">
+	    <form method="GET" action="/c">
+	      <input class="span4" id="appendedInputButton" type="text" name="q">
+	      <button class="btn" type="submit"><i class="icon-search"></i></button>
+	    </form>
+	  </div>
+	  <p style="font-size: 12px;"><i><b>{{ numfree }}</b> files indexed and <b>{{ num }}</b> downloads served so far.</i></p>
+	  <br>
+	  <!--a class="btn btn-large btn-success" href="#">Sign up today</a-->
+	</div>
+	<hr>
+	{% block content %}{% endblock %}
+      </div>
+      <div class="footer container-narrow">
+	<p>
+	  © <a href="http://www.blankons.com">BLANKONS</a> 2013 | Proudly powered by Python, Flask and MongoDB 
+	</p>
+	<p style="font-size: 10px;">
+	  Our search results only contain legal stuff, no crack, no serial number, no torrent link, no keygen, or similar stuff.
+	</p>
+      </div>
+    </div>
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=9485372; 
+var sc_invisible=1; 
+var sc_security="51f72b6e"; 
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="free web stats"
+href="http://statcounter.com/free-web-stats/"
+target="_blank"><img class="statcounter"
+src="http://c.statcounter.com/9485372/0/51f72b6e/1/"
+alt="free web stats"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+  </body>
+</html>

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Download {% endblock %}
+{% block metadesc %}
+<meta name="description" content="Download">
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="refresh" content="10; url={{ data['link'] }}">
+{% endblock %}
+{% block content %}
+  <div class="marketing row-fluid">
+    <div class="span12 r">
+      <div class="alert alert-success">
+	  <p style="font-size: 15px;"><a href="http://ads.ad-center.com/offer?prod=7&ref=4971561&q={{ data['title']|safe }}">{{ data['title']|safe }} Full Download :: 1376 downloads at 2864 kb/s</a></p>
+	  <p style="font-size: 15px;"><a href="http://ads.ad-center.com/offer?prod=7&ref=4971561&q={{ data['title']|safe }}">[Verified] {{ data['title']|safe }} :: 402 downloads at 2157 kb/s</a></p>
+	  <p style="font-size: 15px;"><a href="http://ads.ad-center.com/offer?prod=7&ref=4971561&q={{ data['title']|safe }}">{{ data['title']|safe }} Direct Download :: 1095 downloads at 1967 kb/s</a></p>
+      </div>
+      <p style="font-size: 11px;">Please wait, you're being redirected to {{ data['link'] }} ... </p>
+    </div>
+  </div>
+  <hr>
+<!-- /container -->
+{% endblock %}

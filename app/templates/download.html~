@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Download {% endblock %}
+{% block metadesc %}
+<meta name="description" content="Download">
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="refresh" content="5; url={{ data['link'] }}">
+{% endblock %}
+{% block content %}
+  <div class="marketing row-fluid">
+    <div class="span12 r">
+      <p>Please wait, you're being redirected to {{ data['link'] }} ... </p>
+    </div>
+  </div>
+  <hr>
+<!-- /container -->
+{% endblock %}

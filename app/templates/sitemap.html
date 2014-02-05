@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Sitemap {% endblock %}
+{% block metadesc %}
+<meta name="description" content="Sitemap | Blankons.com">
+{% endblock %}
+{% block content %}
+  <div class="marketing row-fluid">
+    <div class="span12 r">
+      <h2>Sitemap</h2>
+      <div class="well">
+	<ul>
+	{% for d in data %}
+	<li><a href="/{{ d.title|getchars|slug }}/{{ d._id }}">{{ d.title }}</a></li>
+	{% endfor %}
+	</ul>
+      </div>
+    </div>
+  </div>
+  <hr>
+<!-- /container -->
+{% endblock %}

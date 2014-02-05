@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "xmlscraper.py", line 6, in <module>
+    import feedparser
+ImportError: No module named feedparser
+Traceback (most recent call last):
+  File "ptf_grabber.py", line 6, in <module>
+    import requests
+ImportError: No module named requests
+Traceback (most recent call last):
+  File "ptf_grabber.py", line 18, in <module>
+    html = requests.get(url, headers=user_agent).content
+  File "/home/sopier/blankons.biz/local/lib/python2.7/site-packages/requests/api.py", line 55, in get
+    return request('get', url, **kwargs)
+  File "/home/sopier/blankons.biz/local/lib/python2.7/site-packages/requests/api.py", line 44, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/sopier/blankons.biz/local/lib/python2.7/site-packages/requests/sessions.py", line 382, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/sopier/blankons.biz/local/lib/python2.7/site-packages/requests/sessions.py", line 505, in send
+    history = [resp for resp in gen] if allow_redirects else []
+  File "/home/sopier/blankons.biz/local/lib/python2.7/site-packages/requests/sessions.py", line 167, in resolve_redirects
+    allow_redirects=False,
+  File "/home/sopier/blankons.biz/local/lib/python2.7/site-packages/requests/sessions.py", line 485, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/sopier/blankons.biz/local/lib/python2.7/site-packages/requests/adapters.py", line 372, in send
+    raise ConnectionError(e)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='ptf.com', port=80): Max retries exceeded with url: / (Caused by <class 'socket.error'>: [Errno 2] No such file or directory)

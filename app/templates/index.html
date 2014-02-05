@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Homepage {% endblock %}
+{% block metadesc %}
+<meta name="description" content="Homepage | ITWEL.COM">
+{% endblock %}
+{% block content %}
+  <div class="marketing row-fluid">
+    <div class="span12 r">
+      <h1>Latest Index</h1>
+      {% for d in data %}
+      <h2 style="font-size: 18px;"><a href="{{ d['title']|getchars|slug }}/{{ d['_id'] }}">{{ d['title']|replace('&#039;', '\'') }}</a></h2>
+      <p><b>Summary: </b>{{ d['description']|truncate(200)|safe }}</p>
+      <p><b>Tags:</b>
+      {% if d['category'] %}
+      {% for cat in d['category']|split(',') %}
+      <a href="/{{ cat|slug }}">{{ cat|lower }}</a>, 
+      {% endfor %}
+      {% else %}
+      Not Available
+      {% endif %}
+      </p>
+      {% if 'itunes' in d.link %}
+      <p><b>Platform / Operating System: </b>iOS / iPhone / iPad / Mac OS</p>
+      {% elif 'mac.softpedia' in d.link %}
+      <p><b>Platform / Operating System: </b>Mac OS</p>
+      {% elif 'linux.softpedia' in d.link %}
+      <p><b>Platform / Operating System: </b>Linux</p>
+      {% elif 'webscripts.softpedia' in d.link %}
+      <p><b>Platform / Operating System: </b>Web Scripts / Plugin</p>
+      {% elif 'handheld.softpedia' in d.link %}
+      <p><b>Platform / Operating System: </b>Mobile Apps</p>
+      {% elif 'appszoom' in d.link %}
+      <p><b>Platform / Operating System: </b>Android OS APK</p>
+      {% elif 'appbrain' in d.link %}
+      <p><b>Platform / Operating System: </b>Android OS APK</p>
+      {% else %}
+      <p><b>Platform / Operating System: </b>Windows XP / Vista / 7 / 8</p>
+      {% endif %}
+      {% if 'games.softpedia' in d.link %}
+      <p><b>Category: </b>PC (Desktop) Games</p>
+      {% endif %}
+      {% if 'drivers.softpedia' in d.link %}
+      <p><b>Category: </b>Drivers</p>
+      {% endif %}
+      {% if 'www.softpedia' in d.link %}
+      <p><b>Category: </b>Freeware / Shareware / Commercial License</p>
+      {% endif %}
+      <p><b>Requirements: </b>Not Available</p>
+      <p><b>Updated on:</b> {{ d['update'] }}</p>
+      <p><a href="/get/{{ d['_id'] }}" rel="nofollow">Download {{ d['title'] }}</a></p>
+      <p><b>File ID:</b> {{ d['_id'] }}</p>
+      <hr>
+      {% endfor %}
+    </div>
+  </div>
+  <h2>Latest Downloads</h2>
+  {% for query in queries %}
+  <a style="font-size: 12px;" href="/{{ query|slug|lower }}">{{ query|replace('-', ' ') }}</a>, 
+  {% endfor %}
+  <hr>
+<!-- /container -->
+{% endblock %}

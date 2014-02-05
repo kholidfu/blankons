@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}Download {{ q|replace('-', ' ')|title }}{% endblock %}
+
+{% block metadesc %}
+<meta name="description" content="Download {{ q|replace('-', ' ') }} latest version freeware and shareware | BLANKONS.COM">
+{% endblock %}
+{% block content %}
+  <div class="marketing row-fluid">
+    <div class="span12 r">
+      <h2>Download {{ q|replace('-', ' ')|title }}</h2>
+      <div class="alert alert-error" style="font-size: 14px;">
+	Here are the data that is currently available in our database (<b>{{ numfree }}</b> total data stored).
+	Sorry if the results doesn't satisfy you enough, we are working to improve our results.
+      </div>
+
+      <div class="alert alert-success">
+	  <p style="font-size: 15px;"><a href="http://ads.ad-center.com/offer?prod=7&ref=4971561&q={{ q|safe }}">{{ q|replace('-', ' ')|safe }} Full Download :: 1376 downloads at 2864 kb/s</a></p>
+	  <p style="font-size: 15px;"><a href="http://ads.ad-center.com/offer?prod=7&ref=4971561&q={{ q|safe }}">[Verified] {{ q|replace('-', ' ')|safe }} :: 402 downloads at 2157 kb/s</a></p>
+	  <p style="font-size: 15px;"><a href="http://ads.ad-center.com/offer?prod=7&ref=4971561&q={{ q|safe }}">{{ q|replace('-', ' ')|safe }} Direct Download :: 1095 downloads at 1967 kb/s</a></p>
+
+      </div>
+
+      <div class="alert-success" style="background-color: white; margin-bottom: 15px;">
+
+<script type="text/javascript"><!--                                                    
+google_ad_client = "ca-pub-7709072540294219";                                          
+/* pdfoo */                                                                            
+google_ad_slot = "8933856687";                                                         
+google_ad_width = 728;                                                                
+google_ad_height = 90; //-->
+</script>
+<script type="text/javascript"  src="http://pagead2.googlesyndication.com/pagead/show_a
+ds.js">
+</script>
+
+
+</div>
+
+      </div>
+
+      {% if results['results'] %}
+        {% for result in results['results'] %}
+          <p><a style="font-size: 18px;" href="/{{ result['obj']['title']|getchars|slug }}/{{ result['obj']['_id'] }}">{{ result['obj']['title']|replace('&#039;', '\'') }}</a></p>
+          <p><b>Summary: </b>{{ result['obj']['description']|safe }}</p>
+          <p><a href="/get/{{ result['obj']['_id'] }}" rel="nofollow">Download {{ result['obj']['title'] }}</a></p>
+          <p><b>Tags:</b>
+          {% if result['obj']['category'] %}
+            {% for cat in result['obj']['category']|split(',') %}
+              <a href="/{{ cat|slug }}">{{ cat|lower }}</a>, 
+            {% endfor %}
+          {% else %}
+            Not Available
+          {% endif %}
+          </p>
+	  {% if 'itunes' in result.obj.link %}
+          <p><b>Platform / Operating System: </b>iOS / iPhone / iPad / Mac OS</p>
+	  {% elif 'mac.softpedia' in result.obj.link %}
+          <p><b>Platform / Operating System: </b>Mac OS</p>
+	  {% elif 'linux.softpedia' in result.obj.link %}
+          <p><b>Platform / Operating System: </b>Linux</p>
+	  {% elif 'webscripts.softpedia' in result.obj.link %}
+          <p><b>Platform / Operating System: </b>Web Scripts / Plugins</p>
+	  {% elif 'handheld.softpedia' in result.obj.link %}
+          <p><b>Platform / Operating System: </b>Mobile Apps</p>
+	  {% elif 'appszoom' in result.obj.link %}
+          <p><b>Platform / Operating System: </b>Android OS APK</p>	  
+	  {% elif 'appbrain' in result.obj.link %}
+          <p><b>Platform / Operating System: </b>Android OS APK</p>	  
+	  {% else %}
+          <p><b>Platform / Operating System: </b>Windows XP / Vista / 7 / 8</p>
+	  {% endif %}
+	  {% if 'games.softpedia' in result.obj.link %}
+	  <p><b>Category: </b>PC (Desktop) Games</p>
+	  {% endif %}
+          {% if 'drivers.softpedia' in result.obj.link %}
+          <p><b>Category: </b>Drivers</p>
+	  {% endif %}
+	  {% if 'www.softpedia' in result.obj.link %}
+          <p><b>Category: </b>Freeware / Shareware / Commercial License</p>
+	  {% endif %}
+          <p><b>Requirements: </b>Not Available</p>
+          <p><b>Updated on:</b> {{ result['obj']['update'] }}</p>
+	  <p><b>File ID:</b> {{ result['obj']['_id'] }}</p>
+          <hr>
+        {% endfor %}
+      {% else %}
+        <p>No results found for <b>{{ q|replace('-', ' ')|title }}</b>.</p>
+      {% endif %}
+    </div>
+  </div>
+  <h2>Latest Downloads</h2>
+  {% for query in queries %}
+  <a style="font-size: 12px;" href="/{{ query['q']|slug|lower }}">{{ query['q'] }}</a>, 
+  {% endfor %}
+  <hr>
+<!-- /container -->
+{% endblock %}

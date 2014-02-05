@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}About MongoDB Full Text Search {% endblock %}
+{% block metadesc %}
+<meta name="description" content="About Page | BLANKON.COM">
+{% endblock %}
+{% block content %}
+  <div class="marketing row-fluid">
+    <div class="span12 r">
+      <h2>Technology Used by BLANKONS.COM</h2>
+      <div class="well">
+	<p>
+	  This is the first time I use full-text search feature in mongoDB.
+	  And here is the tutorial on how to setup full-text search:<br>
+	  1. Check your mongoDB version, in order to use mongoDB full-text
+	  search, you need at least version 2.4.<br>
+	  2. Uninstall the old one, and install the new one with this command:<br>
+	  <code>
+	    sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB<br>
+	    echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list<br>
+	    sudo apt-get update<br>
+	    sudo apt-get install mongodb-10gen<br>
+	  </code>
+	  3. Edit /etc/mongodb.conf and add this line:<br>
+	  <code>
+	    setParameter=textSearchEnabled=true<br>
+	  </code>
+	  4. [Re]Start mongoDB service:<br>
+	  <code>sudo service mongodb start</code><br>
+	  5. Create new database and collection, then create a text index, on each of the field you want (you can also gives relevance weights for each field, browse official docs for further details on this):<br>
+	  <code>
+	    > use itwel<br>
+	    > db.mycollection.ensureIndex({title: 'text', description: 'text', cat: 'text'})<br>
+	  </code>
+	  On example above I create a text index for title, description and category field.<br>
+	  6. Now you're done, next we can search for something (in this case, I want to search for 'itwel') in pymongo using this syntax:<br>
+	  <code>
+	    >>> import pmongo<br>
+	    >>> c = pymongo.Connection()<br>
+	    >>> db = c['itwel']<br>
+	    >>> db.command('text', 'mycollection', search='itwel')<br>
+	  </code>
+	</p>
+      </div>
+    </div>
+  </div>
+  <hr>
+<!-- /container -->
+{% endblock %}
